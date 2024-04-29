@@ -188,7 +188,7 @@
             <input type="submit" value="Submit">
           </form>
         </div>
-        
+
         <script>
           document
               .getElementById('div-toggle')
@@ -261,7 +261,7 @@
         document.getElementById("contentSubmissionFP").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
             // Get the value of the text input
-            var toggle = document.getElementById("LEDToggle").value;
+            var toggle = document.getElementById("fingerprint").value;
             // Add text prefix
             var prefixedText = "FP: " + toggle;
             // Create a new XMLHttpRequest object
