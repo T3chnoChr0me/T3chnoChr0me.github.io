@@ -308,6 +308,23 @@
             }            
         });
 
+        $(document).ready(function() {
+            $("#clearButton").click(function() {
+                // Send an AJAX request to the clear_text.php script
+                $.ajax({
+                    url: "clear_commands.php",
+                    success: function() {
+                        // Display a success message or perform any other action
+                        alert("Text file cleared successfully!");
+                    },
+                    error: function() {
+                        // Display an error message or perform any other action
+                        alert("Failed to clear text file.");
+                    }
+                });
+            });
+        });
+        
         // Function to refresh the output div with the contents of the text file
         function refreshOutput() {
             // Create a new XMLHttpRequest object
