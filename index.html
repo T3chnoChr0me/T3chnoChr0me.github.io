@@ -188,6 +188,7 @@
             <input type="submit" value="Submit">
           </form>
         </div>
+        
         <script>
           document
               .getElementById('div-toggle')
@@ -202,26 +203,29 @@
                       target.className = 'vis';
                   }
           });
-        </script>
-      
-      <script>
-        document.getElementById("contentSubmissionLCD").addEventListener("submit", function(event) {
+
+          document.getElementById("contentSubmissionLCD").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
             // Get the value of the text input
             var inputText = document.getElementById("LCDInput").value;
-            // Add the prefix "LCD: " to the input text
+            // Add text prefix
             var prefixedText = "LCD: " + inputText;
-            // Create a new paragraph element
-            var paragraph = document.createElement("p");
-            // Create a text node with the input text
-            var textNode = document.createTextNode(prefixedText);
-            // Append the text node to the paragraph element
-            paragraph.appendChild(textNode);
-            // Get the output div
-            var outputDiv = document.getElementById("output");
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
             if (inputText !== "") {
-              // Append the paragraph element to the output div
-              outputDiv.appendChild(paragraph);
+              // Configure the request
+              xhr.open("POST", "save_command.php", true);
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              // Define what happens on successful data submission
+              xhr.onload = function () {
+                  if (xhr.status === 200) {
+                      // Refresh the output div to display the updated data
+                      refreshOutput();
+                  }
+              };
+              // Send the text input value to the server-side script
+              xhr.send("text=" + encodeURIComponent(prefixedText));
             }
             // Clear the text input
             document.getElementById("LCDInput").value = "";
@@ -230,80 +234,102 @@
         document.getElementById("contentSubmissionSP").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
             // Get the value of the text input
-            var inputText = document.getElementById("frequency").value;
-            var input1Text = document.getElementById("duration").value;
-            // Add the prefix "LCD: " to the input text
-            var prefixedText = "Frequency: " + inputText + " Duration: " + input1Text;
-            // Create a new paragraph element
-            var paragraph = document.createElement("p");
-            // Create a text node with the input text
-            var textNode = document.createTextNode(prefixedText);
-            // Append the text node to the paragraph element
-            paragraph.appendChild(textNode);
-            // Get the output div
-            var outputDiv = document.getElementById("output");
-            if ((inputText !== "") && (input1Text !== "")){
-              // Append the paragraph element to the output div
-              outputDiv.appendChild(paragraph);
-            }
-            // Clear the text input
-            document.getElementById("frequency").value = "";
-            document.getElementById("duration").value = "";
-
+            var frequency = document.getElementById("frequency").value;
+            // Get the value of the text input
+            var duration = document.getElementById("duration").value;
+            // Add text prefix
+            var prefixedText = "Frequency: " + frequency + " Duration: " + duration;
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            
+            if ((frequency !== "") && (duration !== "")) {
+              // Configure the request
+              xhr.open("POST", "save_command.php", true);
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              // Define what happens on successful data submission
+              xhr.onload = function () {
+                  if (xhr.status === 200) {
+                      // Refresh the output div to display the updated data
+                      refreshOutput();
+                  }
+              };
+              // Send the text input value to the server-side script
+              xhr.send("text=" + encodeURIComponent(prefixedText));
+            }            
         });
 
         document.getElementById("contentSubmissionFP").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
-            // Get the selected option value
-            var selectOption = document.getElementById("fingerprint").value;            
-            // Add the prefix "LCD: " to the input text
-            var prefixedText = "FP: " + selectOption;
-            // Create a new paragraph element
-            var paragraph = document.createElement("p");
-            // Create a text node with the input text
-            var textNode = document.createTextNode(prefixedText);
-            // Append the text node to the paragraph element
-            paragraph.appendChild(textNode);
-            // Get the output div
-            var outputDiv = document.getElementById("output");
-              // Append the paragraph element to the output div
-              outputDiv.appendChild(paragraph);
+            // Get the value of the text input
+            var toggle = document.getElementById("LEDToggle").value;
+            // Add text prefix
+            var prefixedText = "FP: " + toggle;
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            
+            if (toggle !== "") {
+              // Configure the request
+              xhr.open("POST", "save_command.php", true);
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              // Define what happens on successful data submission
+              xhr.onload = function () {
+                  if (xhr.status === 200) {
+                      // Refresh the output div to display the updated data
+                      refreshOutput();
+                  }
+              };
+              // Send the text input value to the server-side script
+              xhr.send("text=" + encodeURIComponent(prefixedText));
+            }            
         });
 
         document.getElementById("contentSubmissionBT").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
-            // Get the selected option value
-            var selectOption = document.getElementById("bluetooth").value;            
-            // Add the prefix "LCD: " to the input text
-            var prefixedText = "BT: " + selectOption;
-            // Create a new paragraph element
-            var paragraph = document.createElement("p");
-            // Create a text node with the input text
-            var textNode = document.createTextNode(prefixedText);
-            // Append the text node to the paragraph element
-            paragraph.appendChild(textNode);
-            // Get the output div
-            var outputDiv = document.getElementById("output");
-              // Append the paragraph element to the output div
-              outputDiv.appendChild(paragraph);
+            // Get the value of the text input
+            var option = document.getElementById("bluetooth").value;
+            // Add text prefix
+            var prefixedText = "BT: " + option;
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            
+            if (option !== "") {
+              // Configure the request
+              xhr.open("POST", "save_command.php", true);
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              // Define what happens on successful data submission
+              xhr.onload = function () {
+                  if (xhr.status === 200) {
+                      // Refresh the output div to display the updated data
+                      refreshOutput();
+                  }
+              };
+              // Send the text input value to the server-side script
+              xhr.send("text=" + encodeURIComponent(prefixedText));
+            }            
         });
 
-        $(document).ready(function() {
-            $("#clearButton").click(function() {
-                // Send an AJAX request to the clear_text.php script
-                $.ajax({
-                    url: "clear_commands.php",
-                    success: function() {
-                        // Display a success message or perform any other action
-                        alert("Text file cleared successfully!");
-                    },
-                    error: function() {
-                        // Display an error message or perform any other action
-                        alert("Failed to clear text file.");
-                    }
-                });
-            });
-        });      
+        // Function to refresh the output div with the contents of the text file
+        function refreshOutput() {
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+            
+            // Configure the request
+            xhr.open("GET", "command_list.txt", true);
+            
+            // Define what happens on successful data retrieval
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Display the contents of the text file in the output div
+                    document.getElementById("output").innerText = xhr.responseText;
+                }
+            };
+            
+            // Send the request to retrieve the contents of the text file
+            xhr.send();
+          }
+
+          // Call the refreshOutput function when the page loads to display the initial data
+          window.onload = refreshOutput;
         </script>
 
 
