@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSE-525 Bot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    body {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      line-height: 150%;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background-color: #e9e9e9;
+    }
+
+    .header h1 {
+      color: #222222;
+      font-size: 30px;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .header .social a {
+      padding: 0 5px;
+      color: #222222;
+    }
+
+    .left {
+      float: left;
+      width: 180px;
+      margin: 0;
+      padding: 1em;
+    }
+
+    .content {
+      margin-left: 190px;
+      border-left: 1px solid #d4d4d4;
+      padding: 1em;
+      overflow: hidden;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    li a {
+      display: block;
+      color: #000;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+
+    li a.active {
+      background-color: #84e4e2;
+      color: white;
+    }
+
+    li a:hover:not(.active) {
+      background-color: #29292a;
+      color: white;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin: 30px 0;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      padding: 8px;
+    }
+
+    tr:nth-child(1) {
+      background-color: #84e4e2;
+      color: white;
+    }
+
+    tr td i.fas {
+      display: block;
+      font-size: 35px;
+      text-align: center;
+    }
+
+    .footer {
+      padding: 55px 20px;
+      background-color: #2e3550;
+      color: white;
+      text-align: center;
+    }
+
+    .inv {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>CSE-525 Bot</h1>
+      <div class="social">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </header>
+    <aside class="left">
+      <img src="..\Downloads\rpi.jpeg" width="160px" />
+
+      <br><br>
+      <p>Template website code sourced from here: <br> https://www.tutorialstonight.com<br>/html-web-page-examples-with-source-code</p>
+    </aside>
+    <main class="content">
+      <h2>Abouts</h2>
+      <p>I don't look like some handsome horse, but I am a real desert king. I can survive days without water.</p>
+      <h2>How to Use</h2>
+      <p>I work as a web developer for a company that makes websites for camel businesses.</p>
+      <hr><br>
+      <h2>Instruction Selection</h2>
+      
+      <label for="action">Choose an action<br></label>
+      <select id="div-toggle">
+        <option value="">Select...</option>
+        <option value="LCD">Display on LCD</option>
+        <option value="Speaker">Play a sound</option>
+        <option value="Fingerprint">Configure Fingerprint Sensor</option>
+        <option value="Bluetooth">Communicate via Bluetooth (WIP)</option>
+      </select>
+
+        <label for="choice"><br>What would you like to do?<br></label>
+        <div id="LCD" class="inv">
+          <form id="contentSubmissionLCD">                             <!-- ---TAKE A LOOK AT THIS--- -->
+            <label for="LCDInput">Text to Display:</label>
+            <input type="text" id="LCDInput" name="LCDInput"><br><br>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+
+        <div id="Speaker" class="inv">
+          <form id="contentSubmissionSP">                             <!-- ---TAKE A LOOK AT THIS--- -->
+            <label for="frequency">Frequency (in Hz):</label>
+            <input type="text" id="frequency" name="frequency"><br><br>
+            <label for="duration">Duration (in ms):</label>
+            <input type="text" id="duration" name="duration"><br><br>
+            <input type="submit" value="Submit">
+          </form>
+          
+        </div>
+        <div id="Fingerprint" class="inv">
+          <form id="contentSubmissionFP">                             <!-- ---TAKE A LOOK AT THIS--- -->
+            <select name="fingerprint" id="fingerprint">
+              <option value="LEDToggle">Toggle the LED</option>
+            </select>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+
+        <div id="Bluetooth" class="inv">
+          <form id="contentSubmissionBT">                             <!-- ---TAKE A LOOK AT THIS--- -->
+            <select name="bluetooth" id="bluetooth">
+              <option value="song1">Special Suprise</option>
+              <option value="song2">Bad to the Bone</option>
+              <option value="song3">What's New Pussycat?</option>
+            </select>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+        <script>
+          document
+              .getElementById('div-toggle')
+              .addEventListener('change', function () {
+                  'use strict';
+                  var vis = document.querySelector('.vis'),   
+                      target = document.getElementById(this.value);
+                  if (vis !== null) {
+                      vis.className = 'inv';
+                  }
+                  if (target !== null ) {
+                      target.className = 'vis';
+                  }
+          });
+        </script>
+      
+      <script>
+        document.getElementById("contentSubmissionLCD").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Get the value of the text input
+            var inputText = document.getElementById("LCDInput").value;
+            // Add the prefix "LCD: " to the input text
+            var prefixedText = "LCD: " + inputText;
+            // Create a new paragraph element
+            var paragraph = document.createElement("p");
+            // Create a text node with the input text
+            var textNode = document.createTextNode(prefixedText);
+            // Append the text node to the paragraph element
+            paragraph.appendChild(textNode);
+            // Get the output div
+            var outputDiv = document.getElementById("output");
+            if (inputText !== "") {
+              // Append the paragraph element to the output div
+              outputDiv.appendChild(paragraph);
+            }
+            // Clear the text input
+            document.getElementById("LCDInput").value = "";
+        });
+
+        document.getElementById("contentSubmissionSP").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Get the value of the text input
+            var inputText = document.getElementById("frequency").value;
+            var input1Text = document.getElementById("duration").value;
+            // Add the prefix "LCD: " to the input text
+            var prefixedText = "Frequency: " + inputText + " Duration: " + input1Text;
+            // Create a new paragraph element
+            var paragraph = document.createElement("p");
+            // Create a text node with the input text
+            var textNode = document.createTextNode(prefixedText);
+            // Append the text node to the paragraph element
+            paragraph.appendChild(textNode);
+            // Get the output div
+            var outputDiv = document.getElementById("output");
+            if ((inputText !== "") && (input1Text !== "")){
+              // Append the paragraph element to the output div
+              outputDiv.appendChild(paragraph);
+            }
+            // Clear the text input
+            document.getElementById("frequency").value = "";
+            document.getElementById("duration").value = "";
+
+        });
+
+        document.getElementById("contentSubmissionFP").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Get the selected option value
+            var selectOption = document.getElementById("fingerprint").value;            
+            // Add the prefix "LCD: " to the input text
+            var prefixedText = "FP: " + selectOption;
+            // Create a new paragraph element
+            var paragraph = document.createElement("p");
+            // Create a text node with the input text
+            var textNode = document.createTextNode(prefixedText);
+            // Append the text node to the paragraph element
+            paragraph.appendChild(textNode);
+            // Get the output div
+            var outputDiv = document.getElementById("output");
+              // Append the paragraph element to the output div
+              outputDiv.appendChild(paragraph);
+        });
+
+        document.getElementById("contentSubmissionBT").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Get the selected option value
+            var selectOption = document.getElementById("bluetooth").value;            
+            // Add the prefix "LCD: " to the input text
+            var prefixedText = "BT: " + selectOption;
+            // Create a new paragraph element
+            var paragraph = document.createElement("p");
+            // Create a text node with the input text
+            var textNode = document.createTextNode(prefixedText);
+            // Append the text node to the paragraph element
+            paragraph.appendChild(textNode);
+            // Get the output div
+            var outputDiv = document.getElementById("output");
+              // Append the paragraph element to the output div
+              outputDiv.appendChild(paragraph);
+        });
+
+      </script>
+
+
+      <h2>Current Instruction Set</h2>
+
+      <div id="output">
+
+      </div>
+    </main>
+    <footer class="footer">&copy; Copyright Mr. Camel</footer>
+  </div>
+</body>
+
+</html>
