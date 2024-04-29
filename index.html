@@ -137,7 +137,7 @@
       <p>Simply choose the category of the command you want the Pi to execute, and choose the parameters below and click submit! If your information is within the correct bounds, you should see the commands show up below!
         <br>Please use the clear button below to clear the current commands in the file.
       </p>
-      <button id="clearButton">Clear Text</button>
+      <button id="clearButton">Clear Commands</button>
       <hr><br>
       <h2>Instruction Selection</h2>
       
@@ -288,7 +288,23 @@
               outputDiv.appendChild(paragraph);
         });
 
-      </script>
+        $(document).ready(function() {
+            $("#clearButton").click(function() {
+                // Send an AJAX request to the clear_text.php script
+                $.ajax({
+                    url: "clear_commands.php",
+                    success: function() {
+                        // Display a success message or perform any other action
+                        alert("Text file cleared successfully!");
+                    },
+                    error: function() {
+                        // Display an error message or perform any other action
+                        alert("Failed to clear text file.");
+                    }
+                });
+            });
+        });      
+        </script>
 
 
       <h2>Current Instruction Set</h2>
