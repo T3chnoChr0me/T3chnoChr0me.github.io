@@ -3,6 +3,9 @@
 if(isset($_POST['text'])) {
     // Get the text data
     $text = $_POST['text'];
+
+    //Get the File Name
+    $file = 'command_list.txt';
     
     // Open the file in append mode
     $handle = fopen($file, 'a') or die('Cannot open file:  '.$file);
@@ -12,7 +15,7 @@ if(isset($_POST['text'])) {
     
     // Close the file handle
     fclose($handle);
-    
+
     // Send a success response
     http_response_code(200);
     exit;
