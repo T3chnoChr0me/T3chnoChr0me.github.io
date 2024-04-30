@@ -229,7 +229,7 @@
             }
 
             else{
-              throw new Error("Input must be present and less than 16 characters.");
+              alert("Input must be present and less than 16 characters.");
             }
 
             // Clear the text input
@@ -262,7 +262,7 @@
               xhr.send("text=" + encodeURIComponent(prefixedText));
             }
             else {
-              throw new Error("70Hz <= Frequency <= 3000Hz\n50ms <= Duration <= 5000ms");
+              alert("70Hz <= Frequency <= 3000Hz\n50ms <= Duration <= 5000ms");
             }
         });
 
