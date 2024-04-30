@@ -213,7 +213,7 @@
             // Create a new XMLHttpRequest object
             var xhr = new XMLHttpRequest();
 
-            if (inputText !== "") {
+            if ((inputText !== "") && (inputText.length <= 16)) {
               // Configure the request
               xhr.open("POST", "save_command.php", true);
               xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -227,6 +227,11 @@
               // Send the text input value to the server-side script
               xhr.send("text=" + encodeURIComponent(prefixedText));
             }
+
+            else{
+              die("Invalid input, legnth must be less than 16.");
+            }
+
             // Clear the text input
             document.getElementById("LCDInput").value = "";
         });
