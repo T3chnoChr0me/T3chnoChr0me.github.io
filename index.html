@@ -247,7 +247,7 @@
             // Create a new XMLHttpRequest object
             var xhr = new XMLHttpRequest();
             
-            if ((frequency !== "") && (duration !== "")) {
+            if (((frequency !== "") && (duration !== "")) && (((frequency >= 70) && (frequency <= 3000)) && ((duration > 50) && (duration <= 5000)))) {
               // Configure the request
               xhr.open("POST", "save_command.php", true);
               xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -260,7 +260,10 @@
               };
               // Send the text input value to the server-side script
               xhr.send("text=" + encodeURIComponent(prefixedText));
-            }            
+            }
+            else {
+              throw new Error("70Hz <= Frequency <= 3000Hz\n50ms <= Duration <= 5000ms");
+            }
         });
 
         document.getElementById("contentSubmissionFP").addEventListener("submit", function(event) {
